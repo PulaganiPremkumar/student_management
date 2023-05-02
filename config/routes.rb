@@ -1,17 +1,25 @@
 Rails.application.routes.draw do
-  get 'roles/customers'
+get '/patients', to: 'patients#confirm', as: 'patients' 
+get '/patients/import', to: 'patients#import', as: 'import_patient'   
+get '/patients/:id', to: 'patients#export', as: 'patient'  
+post '/patients', to: 'patients#upload', as: 'upload_patient'  
+get '/patients/:id/approve', to: 'patients#approve', as: 'approve_patient'  
+patch '/patients/:id', to: 'patients#improve', as: 'improve_patient'  
+delete '/patients/:id', to: 'patients#destroy', as: 'delete_patient' 
 
-  resources :users do
-    resources :comments
-  end
-  delete 'delete_users', to: 'users#delete_users', as: :delete_users
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  #root 'patients#confirm'
 
+
+  #resources :users do
+    #resources :comments
+  #end
+  #delete 'delete_users', to: 'users#delete_users', as: :delete_users
+  
   # You can have the root of your site routed with "root"
-   root 'users#index'
+   root 'patients#confirm'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -20,7 +28,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+   # resources :products
 
   # Example resource route with options:
   #   resources :products do
