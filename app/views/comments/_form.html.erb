@@ -1,0 +1,9 @@
+<%= form_for([@user, @user.comments.build]) do |f| %>
+  <p>
+    <%= f.label :roles %><br>
+    <%= f.text_field :roles %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

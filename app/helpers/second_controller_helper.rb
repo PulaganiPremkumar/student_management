@@ -1,0 +1,2 @@
+module SecondControllerHelper
+end

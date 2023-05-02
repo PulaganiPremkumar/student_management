@@ -1,0 +1,36 @@
+<h1>Showing the Data</h1>
+<p>
+  <strong>name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>gender:</strong>
+  <%= @user.gender %>
+</p>
+<p>
+  <strong>age:</strong>
+  <%= @user.age %>
+</p>
+<p>
+  <strong>email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>address</strong>
+  <%= @user.address %>
+</p>
+<p>
+  <strong>number</strong>
+  <%= @user.number %>
+</p>
+
+ 
+
+<%= render @user.comments %>
+
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Destroy', user_path(@user), method: :delete %>
+<%= link_to 'Back',users_path %>

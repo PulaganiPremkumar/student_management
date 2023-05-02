@@ -1,0 +1,22 @@
+<h1>Displaying all the Patient Details</h1>
+<%= link_to 'New_user', new_patient_path %>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>contactno</th>
+		<th>Gender</th>
+	</tr>
+
+	<% @patients.each do |patient| %>
+	<tr>
+		<td><%= patient.name %></td>
+		<td><%= patient.email %></td>
+		<td><%= patient.contactno %></td>
+		<td><%= patient.gender %></td>
+		<td><%= link_to 'Show', patient_path(patient) %></td>
+		<td><%= link_to 'Destroy', patient_path(patient),
+                method: :delete%></td>
+	</tr>
+	<% end %>
+</table>
