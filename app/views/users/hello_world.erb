@@ -1,0 +1,17 @@
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>contactno</th>
+		<th>Gender</th>
+	</tr>
+
+	<% @patients.each do |patient| %>
+	<tr>
+		<td><%= patient.name %></td>
+		<td><%= patient.email %></td>
+		<td><%= patient.contactno %></td>
+		<td><%= patient.gender %></td>
+        </tr>
+	<% end %>
+</table>
