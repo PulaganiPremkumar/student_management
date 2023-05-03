@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
-get '/patients', to: 'patients#confirm', as: 'patients' 
-get '/patients/import', to: 'patients#import', as: 'import_patient'   
-get '/patients/:id', to: 'patients#export', as: 'patient'  
-post '/patients', to: 'patients#upload', as: 'upload_patient'  
-get '/patients/:id/approve', to: 'patients#approve', as: 'approve_patient'  
-patch '/patients/:id', to: 'patients#improve', as: 'improve_patient'  
-delete '/patients/:id', to: 'patients#destroy', as: 'delete_patient' 
-
+# get '/patients', to: 'patients#confirm', as: 'patients' 
+# get '/patients/newpatient', to: 'patients#newpatient', as: 'newpatient_patient'   
+# get '/patients/:id', to: 'patients#export', as: 'patient'  
+# post '/patients', to: 'patients#savepatient', as: 'savepatient_patient'  
+# put '/patients/:id/approve', to: 'patients#approve', as: 'approve_patient'  
+# patch '/patients/:id', to: 'patients#improve', as: 'improve_patient'  
+# delete '/patients/:id', to: 'patients#destroy', as: 'delete_patient' 
+# resources :patients
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   #root 'patients#confirm'
 
 
-  #resources :users do
-    #resources :comments
-  #end
-  #delete 'delete_users', to: 'users#delete_users', as: :delete_users
+  resources :users do
+    resources :comments
+  end
+  delete 'delete_users', to: 'users#delete_users', as: :delete_users
   
   # You can have the root of your site routed with "root"
-   root 'patients#confirm'
+   root 'users#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

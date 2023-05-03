@@ -16,9 +16,9 @@
 		<td><%= patient.gender %></td>
 		<td><%= link_to 'Show', patient_path(patient) %></td>
 		<td><%= link_to 'Edit', patient_path(patient) %></td>
-		<td><%= link_to 'Delete', patient_path(patient),
-                method: :cancel%></td>
-		
+		<td><%= link_to 'Destroy', patient_path(patient),
+                method: :delete%></td>
+    </tr>
 		
 	</tr>
 	<% end %>
