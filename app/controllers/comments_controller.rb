@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
 	
 	private
 	  def comment_params
-	   	params.require(:comment).permit(:roles )
+	   	params.require(:comment).permit(:roles, :date_of_birth )
 	
 	end
 end

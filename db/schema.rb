@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230428050447) do
+ActiveRecord::Schema.define(version: 20230503110721) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.string   "roles",      limit: 255
-    t.string   "jobrole",    limit: 255
+    t.integer  "user_id",       limit: 4
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "roles",         limit: 255
+    t.string   "date_of_birth", limit: 255
+    t.string   "dob",           limit: 255
   end
 
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree

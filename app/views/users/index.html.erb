@@ -2,13 +2,26 @@
 <%= link_to 'New_user', new_user_path %>
 <%= form_tag delete_users_path, method: :delete do %>
 
-<%= form_tag(users_path, method: :get) do %>
-<%= select_tag 'comment_id', options_for_select(@comments), prompt: 'Select a Comment' %>
+<%= form_tag users_path, method: :get do %>
+  <%= select_tag :comment_id, options_from_collection_for_select(@comments, 'id', 'roles'), prompt: 'Select a role' %>
 <%= submit_tag "Submit" %>
 <% end %>
+
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 2px solid blue;
+  }
+  td + td, th + th {
+    border-left: none;
+  }
+</style>
 <% if @users.present? %>
  <table>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Gender</th>
     <th>Age</th>
@@ -16,6 +29,7 @@
     <th>Address</th>
     <th>Number</th>
     <th>Roles</th>
+    <th>date_of_birth</th>
   </tr>
  
   <% @users.each do |user| %>
@@ -28,12 +42,15 @@
       <td><%= user.address %></td>
       <td><%= user.number %></td>
       <% user.comments.each do|uc| %>
+
       <td><%= uc.roles %></td>
+      <td><%= uc.date_of_birth %></td>
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Show', user_path(user) %></td>
       <td><%= link_to 'Destroy', user_path(user),
               method: :delete%></td>
     </tr>
+    
     <% end %>
     <% end %>
 </table>

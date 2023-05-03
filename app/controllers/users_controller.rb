@@ -2,16 +2,13 @@ class UsersController < ApplicationController
 	http_basic_authenticate_with name: 'admin', password: 'cnt12345', except: [:index, :show]
   
   def index
-  	@comments = Comment.all.map{ |p| [p.roles] }
-    if params[:comment_id].present?
-    @comment = Comment.find(params[:comment_id])
-    @users = @comment.users
-    else
-    @comment = nil
+  @comments = Comment.select(:id, :roles).distinct.order(:date_of_birth)
+  if params[:comments_id]
+    @users = User.joins(:comments).where(comments: { id: params[:comment_id] })
+  else
     @users = User.all
-    end
   end
-
+end
 	def new
 		 @user = User.new
 	end
