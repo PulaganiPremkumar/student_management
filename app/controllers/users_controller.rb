@@ -2,13 +2,15 @@ class UsersController < ApplicationController
 	http_basic_authenticate_with name: 'admin', password: 'cnt12345', except: [:index, :show]
   
   def index
-  @comments = Comment.select(:id, :roles).distinct.order(:date_of_birth)
-  if params[:comments_id]
-    @users = User.joins(:comments).where(comments: { id: params[:comment_id] })
+  	@comments = Comment.all
+  	if params[:search].present?
+    search_term = "%#{params[:search]}%"
+    @users = User.where("name like ? or email like ? or phone_no like ?", search_term, search_term, search_term)
   else
     @users = User.all
-  end
+  end 
 end
+
 	def new
 		 @user = User.new
 	end
@@ -45,13 +47,15 @@ end
 	    end
     end
 
-    def delete_users
-    	User.where(id: params[:user_ids]).destroy_all
-    	redirect_to users_path
+  def delete_users
+  User.destroy(params[:user_ids])
+  redirect_to users_path, notice: "Selected users have been deleted"
 end
+
 
 	private
 	def user_params
-		params.require(:user).permit(:name, :gender, :age, :email, :address, :number)
+		
+		params.require(:user).permit(:name, :gender, :age, :email, :present_address, :address, :phone_no, :search)
 	end
 end

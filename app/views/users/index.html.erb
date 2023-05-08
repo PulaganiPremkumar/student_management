@@ -1,24 +1,30 @@
 <h1>Displaying the Data</h1>
 <%= link_to 'New_user', new_user_path %>
-<%= form_tag delete_users_path, method: :delete do %>
-
-<%= form_tag users_path, method: :get do %>
-  <%= select_tag :comment_id, options_from_collection_for_select(@comments, 'id', 'roles'), prompt: 'Select a role' %>
+<%= form_tag(users_path, method: :get) do %>
+ <%= select_tag 'user[comment_id]', options_from_collection_for_select(Comment.all, :id, :roles) %>
 <%= submit_tag "Submit" %>
 <% end %>
+
 
 <style>
   table {
     border-collapse: collapse;
   }
   td, th {
-    border: 2px solid blue;
+    border: 3px solid black;
   }
   td + td, th + th {
     border-left: none;
   }
 </style>
-<% if @users.present? %>
+  <%= form_tag users_path(@users), method: :get do %>
+        <%= label_tag :search, "Search for:" %>
+        <%= text_field_tag :search, params[:search]%>
+        <%= submit_tag "Search" %>
+      <% end %>
+      <%= form_tag delete_users_path, method: :delete do %>
+<% if params[:search].present? %>
+
  <table>
   <tr>
     <th></th>
@@ -26,25 +32,26 @@
     <th>Gender</th>
     <th>Age</th>
     <th>Email</th>
-    <th>Address</th>
-    <th>Number</th>
+    <th>Present_address</th>
+     <th>address</th>
+    <th>Phone_no</th>
     <th>Roles</th>
     <th>date_of_birth</th>
   </tr>
- 
   <% @users.each do |user| %>
     <tr>
-      <td><%= check_box_tag "user_ids[]",user.id %></td>
+      <td><%= check_box_tag "user_ids[]", user.id %></td>
       <td><%= user.name %></td>
       <td><%= user.gender %></td>
       <td><%= user.age %></td>
       <td><%= user.email %></td>
+      <td><%= user.present_address %></td>
       <td><%= user.address %></td>
-      <td><%= user.number %></td>
+      <td><%= user.phone_no %></td>
       <% user.comments.each do|uc| %>
-
       <td><%= uc.roles %></td>
       <td><%= uc.date_of_birth %></td>
+      
       <td><%= link_to 'Edit', edit_user_path(user) %></td>
       <td><%= link_to 'Show', user_path(user) %></td>
       <td><%= link_to 'Destroy', user_path(user),
@@ -55,8 +62,10 @@
     <% end %>
 </table>
 <%= submit_tag "Delete selected users" %>
+
 <% end %>
 
 <% end %>
+
 
 

@@ -1,0 +1,21 @@
+<%= form_tag patients_path do %>
+<div>
+ <%= label_tag :name, "Name:" %><br>
+<%= text_field_tag :name %>
+</div>
+<div>
+<%= label_tag :email, "Email:" %><br>
+<%= text_field_tag :email %>
+</div>
+<div>
+<%= label_tag :contactno, "Contactno:" %><br>
+<%= text_field_tag :contactno %>
+</div>
+<div>
+<%= label_tag :gender, "Gender:" %><br>
+<%= text_field_tag :gender %>
+</div>
+<div>
+  <%= submit_tag "Save" %>
+</div>
+<% end %>
