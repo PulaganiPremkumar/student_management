@@ -2,13 +2,16 @@ class UsersController < ApplicationController
 	http_basic_authenticate_with name: 'admin', password: 'cnt12345', except: [:index, :show]
   
   def index
-  	@comments = Comment.all
+   @users = User.all
+   @users = @users.includes(:comments).where(comments: { roles: params[:roles] }) if params[:roles].present?
+  	
   	if params[:search].present?
     search_term = "%#{params[:search]}%"
     @users = User.where("name like ? or email like ? or phone_no like ?", search_term, search_term, search_term)
   else
     @users = User.all
   end 
+
 end
 
 	def new

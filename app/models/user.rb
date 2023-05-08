@@ -1,14 +1,9 @@
 class User < ActiveRecord::Base
 	has_many :comments, dependent: :destroy
-	validates_presence_of :name
+	validates :name , format: {with: /\A[a-zA-Z]+\z/,message: 'only letters is allowed'}
 	validates :phone_no, presence: true, length: {minimum:10}
-	validates_uniqueness_of :email, presence: true, :case_sensitive => false, format: {with:URI::MailTo::EMAIL_REGEXP } 
+	validates :email, presence: true,uniqueness: true , :case_sensitive => false, format: {with:URI::MailTo::EMAIL_REGEXP } 
     
-def self.search(search)
-            where('name LIKE :query OR email LIKE :query OR phone_no LIKE :query', { query: "%#{search}%" })
-      end
-
-
     after_commit :display_user_address
     def display_user_address
     if self.address.present?
