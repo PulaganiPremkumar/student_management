@@ -15,10 +15,13 @@
 	<strong>Gender</strong>
 	<%= @patient.gender %>
 </p>
-<p>
-	<strong>Roles</strong>
-	<%= @patient.roles %>
-</p>
+
+
+<%= render 'hospitals/form' %>
+
+<%= render @patient.hospitals %>
+
+
 <%= link_to 'Edit', edit_patient_path(@patient) %>
 <%= link_to 'Destroy', patient_path(@patient), method: :delete %>
 <%= link_to 'Back',patients_path %>

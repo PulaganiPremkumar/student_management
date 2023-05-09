@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20230509062539) do
+ActiveRecord::Schema.define(version: 20230509100530) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20230509062539) do
   end
 
   add_index "doctors", ["comment_id"], name: "index_doctors_on_comment_id", using: :btree
+
+  create_table "hospitals", force: :cascade do |t|
+    t.string   "roles",      limit: 255
+    t.integer  "patient_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "hospitals", ["patient_id"], name: "index_hospitals_on_patient_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "bike",       limit: 255
@@ -56,7 +65,6 @@ ActiveRecord::Schema.define(version: 20230509062539) do
     t.string   "gender",     limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "roles",      limit: 255
   end
 
   create_table "products", force: :cascade do |t|
@@ -82,6 +90,7 @@ ActiveRecord::Schema.define(version: 20230509062539) do
 
   add_foreign_key "comments", "users"
   add_foreign_key "doctors", "comments"
+  add_foreign_key "hospitals", "patients"
   add_foreign_key "managers", "patients"
   add_foreign_key "products", "users"
 end

@@ -1,0 +1,9 @@
+<%= form_for([@patient, @patients.hospital.build]) do |f| %>
+<p>
+	<%= f.label :roles %>
+	<%= f.text_field :roles %>
+</p>
+<p>
+	<%= f.submit %>
+</p>
+<% end %>

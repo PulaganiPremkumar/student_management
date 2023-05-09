@@ -1,4 +1,4 @@
-<h1>Displaying all the role Detail</h1>
+<h3>Displaying all the role Detail</h3>
 <%= link_to 'New_Patient', new_patient_path %>
 
 
@@ -8,14 +8,14 @@
         <%= submit_tag "Search" %>
      
 <% if @patients.present? %>
-<table border="2">
 
+<table border="2">
 	<tr>
 		<th>Name</th>
 		<th>Email</th>
 		<th>Contactno</th>
 		<th>Gender</th>
-		<th>Roles</th>
+		<th>roles</th>
 	</tr>
 
 	<% @patients.each do |patient| %>
@@ -24,16 +24,20 @@
 		<td><%= patient.email %></td>
 		<td><%= patient.contactno %></td>
 		<td><%= patient.gender %></td>
-		<td><%= patient.roles %></td>
+		<% patient.hospitals.each do|uc| %>
+    <td><%= uc.roles %></td>
 		<td><%= link_to 'Edit', edit_patient_path(patient) %></td>
 		<td><%= link_to 'Show', patient_path(patient) %></td>
 		<td><%= link_to 'Destroy', patient_path(patient),
                 method: :delete%></td>
 	</tr>
 <% end %>
+<% end %>
 </table>
 <% end %>
 <% end %>
+
+
 
 
 

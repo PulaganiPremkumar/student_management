@@ -1,6 +1,6 @@
-class CreateManagers < ActiveRecord::Migration
+class CreateHospitals < ActiveRecord::Migration
   def change
-    create_table :managers do |t|
+    create_table :hospitals do |t|
       t.string :roles
       t.references :patient, index: true, foreign_key: true
 
