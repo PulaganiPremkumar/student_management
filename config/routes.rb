@@ -6,19 +6,19 @@ Rails.application.routes.draw do
  # put '/patients/:id/approve', to: 'patients#approve', as: 'approve_patient'  
  # patch '/patients/:id', to: 'patients#improve', as: 'improve_patient'  
  # delete '/patients/:id', to: 'patients#destroy', as: 'delete_patient' 
- # resources :patients
+  resources :patients 
   # post '/patients', to: 'patients#child', as: 'savechild'  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root 'patients#confirm'
+  root 'patients#index'
    # get '/users', to: 'users#index', as: 'users_index' 
    # get '/users', to: 'users#show', as: 'user_show'
 
-  resources :users do
-    resources :comments
-  end
+  # resources :users do
+  #   resources :comments
+  # end
   
-  delete 'delete_users', to: 'users#delete_users', as: :delete_users
+  # delete 'delete_users', to: 'users#delete_users', as: :delete_users
   # resources :patients
   # You can have the root of your site routed with "root"
    # root 'users#index'

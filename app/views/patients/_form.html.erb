@@ -11,25 +11,27 @@
 <% end %>
 
 <p>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
+<%= f.label :name %>
+<%= f.text_field :name %>
 </p>
 <p>
-	<%= f.label :email %>
-	<%= f.text_field :email %>
+<%= f.label :email %>
+<%= f.text_field :email %>
 </p>
 <p>
-	<%= f.label :contactno %>
-	<%= f.text_field :contactno %>
+<%= f.label :contactno %>
+<%= f.text_field :contactno %>
 </p>
 <p>
-	<%= f.label :gender %><br />
-	<%= f.label :gender, "Male" %>
-	<%= f.radio_button :gender, true %>
-	<%= f.label :gender, "Female" %>
-	<%= f.radio_button :gender, false %>
+<%= f.label :roles %>
+<%= f.text_field :roles %>
 </p>
 <p>
-	<%= f.submit %>
+<%= f.label :gender %>
+<%= f.text_field :gender %>
+
+</p>
+<p>
+<%= f.submit %>
 </p>
 <% end %>

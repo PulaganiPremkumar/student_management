@@ -1,11 +1,21 @@
-<h1>Displaying all the Patient Details</h1>
-<%= link_to 'New_user', new_patient_path %>
-<table>
+<h1>Displaying all the role Detail</h1>
+<%= link_to 'New_Patient', new_patient_path %>
+
+
+  <%= form_tag patients_path(@patients), method: :get do %>
+        <%= label_tag :search, "Search for:" %>
+        <%= text_field_tag :search, params[:search]%>
+        <%= submit_tag "Search" %>
+     
+<% if @patients.present? %>
+<table border="2">
+
 	<tr>
 		<th>Name</th>
 		<th>Email</th>
-		<th>contactno</th>
+		<th>Contactno</th>
 		<th>Gender</th>
+		<th>Roles</th>
 	</tr>
 
 	<% @patients.each do |patient| %>
@@ -14,9 +24,17 @@
 		<td><%= patient.email %></td>
 		<td><%= patient.contactno %></td>
 		<td><%= patient.gender %></td>
+		<td><%= patient.roles %></td>
+		<td><%= link_to 'Edit', edit_patient_path(patient) %></td>
 		<td><%= link_to 'Show', patient_path(patient) %></td>
 		<td><%= link_to 'Destroy', patient_path(patient),
                 method: :delete%></td>
 	</tr>
-	<% end %>
+<% end %>
 </table>
+<% end %>
+<% end %>
+
+
+
+

@@ -1,19 +1,27 @@
 <h1>Showing Data</h1>
 <p>
-	<strong>name</strong>
+	<strong>Name</strong>
 	<%= @patient.name %>
 </p>
 <p>
-	<strong>email</strong>
+	<strong>Email</strong>
 	<%= @patient.email %>
 </p>
 <p>
-	<strong>contactno</strong>
+	<strong>Contactno</strong>
 	<%= @patient.contactno %>
 </p>
 <p>
-	<strong>gender</strong>
+	<strong>Gender</strong>
 	<%= @patient.gender %>
 </p>
+<p>
+	<strong>Roles</strong>
+	<%= @patient.roles %>
+</p>
+<%= link_to 'Edit', edit_patient_path(@patient) %>
+<%= link_to 'Destroy', patient_path(@patient), method: :delete %>
+<%= link_to 'Back',patients_path %>
+
 
 

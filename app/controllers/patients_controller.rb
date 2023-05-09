@@ -1,7 +1,13 @@
 class PatientsController < ApplicationController
 	def index
 		@patients = Patient.all
+		if params[:search].present?
+			@patients = Patient.where("Roles LIKE ?", "%#{params[:search]}%")
+		else
+			@patients = Patient.all
+		end
 	end
+  
 	def new
 		@patient = Patient.new
 	end
@@ -36,7 +42,7 @@ class PatientsController < ApplicationController
 		
   private
 	def patient_params
-		params.require(:patient).permit(:name, :email, :contactno, :gender)
+		params.require(:patient).permit(:name, :email, :contactno, :gender, :roles)
 	end
 
 end

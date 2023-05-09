@@ -11,8 +11,6 @@ class CommentsController < ApplicationController
 		@comment.destroy
 		redirect_to user_path(@user)
 	end
-	def edit
-	end
 	
 	private
 	  def comment_params
