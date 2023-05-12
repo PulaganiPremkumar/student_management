@@ -6,21 +6,22 @@
 <%= select_tag :roles, options_for_select(Comment.select(:roles).distinct.order(:roles).pluck(:roles), params[:roles]), include_blank: true %>
 <%= submit_tag "Submit" %>
 <% end %>
+
  <%= form_tag users_path(@users), method: :get do %>
         <%= label_tag :search, "Search for:" %>
         <%= text_field_tag :search, params[:search]%>
         <%= submit_tag "Search" %>
       <% end %>
 <% if params[:search].present? %>
+
 <% if @users.present? %>
 
 <%= form_tag delete_users_path, method: :delete do %>
- 
 <%= submit_tag "Delete selected users" %>
 <% end %>
 
 <% end %>
-<% end %>
+
 <% end %>
 
 <table border="2">
@@ -36,7 +37,7 @@
     <th>Roles</th>
     <th>date_of_birth</th>
   </tr>
-  <% @userss.each do |user| %>
+  <% @users.each do |user| %>
     <tr>
       <td><%= check_box_tag "user_ids[]", user.id %></td>
       <td><%= user.name %></td>
@@ -56,7 +57,7 @@
               method: :delete%></td>
     </tr>
     <% end %>
+    <% end %>
 </table>
-<% end %>
 
 

@@ -16,11 +16,11 @@
 	<%= @patient.gender %>
 </p>
 
-
-<%= render 'hospitals/form' %>
+<p>
+	<strong>roles</strong>
+</p>
 
 <%= render @patient.hospitals %>
-
 
 <%= link_to 'Edit', edit_patient_path(@patient) %>
 <%= link_to 'Destroy', patient_path(@patient), method: :delete %>

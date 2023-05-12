@@ -1,0 +1,28 @@
+<h1>Displaying employee details</h1>
+<p>
+	<strong>name</strong>
+	<%= @employee.name %>
+</p>
+<p>
+	<strong>email</strong>
+	<%= @employee.email %>
+</p>
+<p>
+	<strong>gender</strong>
+	<%= @employee.gender %>
+</p>
+<p>
+	<strong>contact_no</strong>
+	<%= @employee.contact_no %>
+</p>
+
+  <p>
+  	<strong>roles:</strong>
+  	<ul>
+    <% @role.each do|r| %>
+    <li><%= r.name %></li>
+    <% end %>
+</ul>
+  </p>
+
+<%= link_to 'Back',employees_path %>

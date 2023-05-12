@@ -6,6 +6,10 @@ Rails.application.routes.draw do
  # put '/patients/:id/approve', to: 'patients#approve', as: 'approve_patient'  
  # patch '/patients/:id', to: 'patients#improve', as: 'improve_patient'  
  # delete '/patients/:id', to: 'patients#destroy', as: 'delete_patient' 
+  resources :employees do 
+    resources :roles
+  end
+     
   resources :patients do 
     resources :hospitals
   end

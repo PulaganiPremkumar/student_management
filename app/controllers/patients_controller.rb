@@ -1,20 +1,21 @@
 class PatientsController < ApplicationController
 	def index
-		@patients = Patient.all
+		#@patients = Patient.all
 		 if params[:search]
       @patients = Patient.joins(:hospitals).where('hospitals.roles LIKE ?', "%#{params[:search]}%")
     else
       @patients = Patient.all
     end
   end
-	
   
 	def new
 		@patient = Patient.new
 	end
+
 	def create
 		@patient = Patient.new(patient_params)
 		if @patient.save
+			@patient.hospitals << Hospital.where(id: params[:patient][:hospital_ids])
 			redirect_to patient_path(@patient.id)
 		else
 			render 'new'
@@ -23,6 +24,7 @@ class PatientsController < ApplicationController
 
 	def show
 		@patient = Patient.find(params[:id])
+	
 	end
 	def edit
 		@patient = Patient.find(params[:id])
@@ -30,7 +32,7 @@ class PatientsController < ApplicationController
 	def update
 		@patient = Patient.find(params[:id])
 		if @patient.update(patient_params)
-			redirect_to patients_path(@patient)
+			redirect_to patient_path(@patient)
 		else
 			render 'edit'
 		end
@@ -43,7 +45,7 @@ class PatientsController < ApplicationController
 		
   private
 	def patient_params
-		params.require(:patient).permit(:name, :email, :contactno, :gender, :roles, :search)
+		params.require(:patient).permit(:name, :email, :contactno, :gender, :roles, :search ,hospital_id: [])
 	end
 
 end

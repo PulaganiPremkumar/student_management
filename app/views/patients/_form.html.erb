@@ -1,3 +1,4 @@
+<% require 'patient_hospital' %>
 <%= form_for @patient do |f| %>
 <% if @patient.errors.any? %>
 <h2>
@@ -26,8 +27,9 @@
 <p>
 <%= f.label :gender %>
 <%= f.text_field :gender %>
-
 </p>
+<%= f.label :roles %>
+  <%= f.collection_select :hospital_ids, Hospital.all, :id, :roles, {}, { multiple: true } %>
 <p>
 <%= f.submit %>
 </p>

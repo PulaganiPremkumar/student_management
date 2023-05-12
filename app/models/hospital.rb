@@ -1,3 +1,5 @@
 class Hospital < ActiveRecord::Base
-  belongs_to :patient
+ has_many :hospital_patients
+ 
+ has_many :patients, through: :hospital_patients
 end
