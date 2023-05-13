@@ -22,7 +22,12 @@
 </p>
 <p>
 	<%= f.label :gender %>
-	<%= f.text_field :gender %>
+  <%= f.radio_button :gender, 'Male' %>
+  <%= f.label :gender_male, 'Male' %>
+
+  <%= f.radio_button :gender, 'Female' %>
+  <%= f.label :gender_female, 'Female' %>
+
 </p>
 <p>
 	<%= f.label :contact_no %>
@@ -30,7 +35,7 @@
 </p>
 <p>
 <%= f.label :role_ids, "Select roles" %>
- <%= f.collection_select :role_ids, Role.all, :id, :name, {}, { multiple: true } %>
+<%= f.collection_select :role_ids, Role.all, :id, :name, {}, { multiple: true } %>
     
 <p>
 <p>

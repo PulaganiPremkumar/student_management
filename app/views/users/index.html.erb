@@ -16,14 +16,10 @@
 
 <% if @users.present? %>
 
-<%= form_tag delete_users_path, method: :delete do %>
-<%= submit_tag "Delete selected users" %>
-<% end %>
+
 
 <% end %>
-
 <% end %>
-
 <table border="2">
   <tr>
     <th></th>
@@ -37,6 +33,8 @@
     <th>Roles</th>
     <th>date_of_birth</th>
   </tr>
+  <%= form_tag delete_users_path, method: :delete do %>
+
   <% @users.each do |user| %>
     <tr>
       <td><%= check_box_tag "user_ids[]", user.id %></td>
@@ -58,6 +56,9 @@
     </tr>
     <% end %>
     <% end %>
+<%= submit_tag "Delete selected users" %>
+<% end %>
 </table>
+
 
 

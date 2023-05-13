@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :employees do 
     resources :roles
   end
+  delete 'delete_employees', to: 'employees#delete_employees', as: :delete_employees
      
   resources :patients do 
     resources :hospitals
@@ -23,7 +24,6 @@ Rails.application.routes.draw do
    resources :users do
      resources :comments
    end
-  
   delete 'delete_users', to: 'users#delete_users', as: :delete_users
   # resources :patients
   # You can have the root of your site routed with "root"

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	validates :phone_no, presence: true, length: {minimum:10}
 	validates :email, presence: true,uniqueness: true , :case_sensitive => false, format: {with:URI::MailTo::EMAIL_REGEXP } 
     
-    after_commit :display_user_address
+    after_delete :display_user_address
     def display_user_address
     if self.address.present?
         address = self.address

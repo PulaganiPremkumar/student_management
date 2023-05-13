@@ -1,6 +1,22 @@
 class EmployeesController < ApplicationController
+	def index
+	    if params[:name].present?
+        @employees =Employee.eager_load(employee_roles: :role).where("roles.name LIKE ?", "%#{params[:name]}%")
+        else
+          @employees = Employee.all
+    end
+	end
+
+	# def index
+	# if params[:name].present?
+    #   @employees = Employee.joins(:roles).where("roles.name LIKE ?", "%#{params[:name]}%")
+    # else
+    #   @employees = Employee.all
+    # end
+	# end
+
 	def new
-		@roles = Role.all
+		@role = Role.all
 		@employee = Employee.new
 
 	end
@@ -20,18 +36,10 @@ class EmployeesController < ApplicationController
 		@role = @employee.roles
 	end
 
-	def index
-		# @employee = Employee.all
-	if params[:role_name].present?
-      @employees = Employee.joins(:roles).where("roles.name LIKE ?", "%#{params[:role_name]}%")
-    else
-      @employees = Employee.all
-    end
-	end
 
 	def edit
 		@employee = Employee.find(params[:id])
-		@roles = Role.all
+		@role = Role.all
 	end
 
 	def update
@@ -49,6 +57,11 @@ class EmployeesController < ApplicationController
 		redirect_to employees_path(@employee)
 	end
 
+	def delete_employees
+        Employee.destroy(params[:employee_ids])
+        redirect_to employees_path, notice: "Selected employees have been deleted"
+    end
+    
 	private
 	def employee_params
 		params.require(:employee).permit(:name,:email,:gender,:contact_no,role_ids:[])
