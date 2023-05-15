@@ -15,13 +15,14 @@ after_update :display_employee_gender
       end
     end
 
-before_destroy :display_employee_contact_no
-    def display_employee_contact_no
-    if self.contact_no.present?
-        contact_no = self.contact_no
-        puts "=====Employee contact_no is #{contact_no}====="
+
+before_create :display_employee_name
+    def display_employee_name
+    if self.name.present?
+        name = self.name
+        puts "=====Employee name is #{name}====="
     else
-    	puts "=====contact_no cannot be blank====="
+    	puts "=====name cannot be blank====="
       end
     end
 end
