@@ -1,19 +1,19 @@
 class EmployeesController < ApplicationController
-	# def index
-	#     if params[:name].present?
-    #     @employees =Employee.eager_load(employee_roles: :role).where("roles.name LIKE ?", "%#{params[:name]}%")
-    #     else
-    #       @employees = Employee.all
-    # end
-	# end
-
 	def index
-	if params[:name].present?
-      @employees = Employee.joins(:roles).where("roles.name LIKE ?", "%#{params[:name]}%")
-    else
-      @employees = Employee.all
+	    if params[:name].present?
+        @employees =Employee.eager_load(employee_roles: :role).where("roles.name LIKE ?", "%#{params[:name]}%")
+        else
+          @employees = Employee.all
     end
 	end
+
+	# def index
+	# if params[:name].present?
+    #   @employees = Employee.joins(:roles).where("roles.name LIKE ?", "%#{params[:name]}%")
+    # else
+    #   @employees = Employee.all
+    # end
+	# end
 
 	def new
 		@role = Role.all

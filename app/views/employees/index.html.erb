@@ -1,17 +1,17 @@
 <%= link_to 'New employee', new_employee_path %>
 
-<!-- <%= form_tag employees_path(@employee), method: :get do %>
+<%= form_tag employees_path(@employee), method: :get do %>
 <%= label_tag :name, "Select:" %>
 <%= select_tag :name, options_for_select(Role.select(:name).distinct.order(:name).pluck(:name), params[:name]), include_blank: true %>
 <%= submit_tag "Submit" %>
 <% end %>
- -->
+
  
-<%= form_tag employees_path, method: :get do %>
+<!-- <%= form_tag employees_path, method: :get do %>
   <%= text_field_tag :name, params[:name], placeholder: "Search by Role Name" %>
   <%= submit_tag "Search" %>
 <% end %>
-<% if @employees.present? %>
+<% if @employees.present? %> -->
 
 	<table border="2">
 	<tr>
